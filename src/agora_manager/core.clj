@@ -9,8 +9,8 @@
   (->> (str/split (.toString (local-date)) #"-")
        (zipmap [:year :month :day])))
 
-(defn init-directories [user {y :year m :month d :day}]
-  (let [dirs [user "contents" y m d]]
+(defn init-directories [{y :year m :month d :day}]
+  (let [dirs ["agora-hub" "contents" y m d]]
     (loop [d dirs path ""]
       (if (empty? d) (println "directories created.")
         (let [p (str path (first d) "/")]
@@ -19,5 +19,5 @@
 
 (defn -main
   "I don't do a whole lot ... yet."
-  [user-name]
-  (init-directories user-name (get-date)))
+  []
+  (init-directories  (get-date)))
